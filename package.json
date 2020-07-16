@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myks790/nodejs-study.git"
+  },
+  "author": "myks790",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myks790/nodejs-study/issues"
+  },
+  "homepage": "https://github.com/myks790/nodejs-study#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
