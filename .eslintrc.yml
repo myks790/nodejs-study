@@ -8,4 +8,5 @@ extends:
 parserOptions:
   ecmaVersion: 11
 rules: {
+  "no-console": "off"
 }
