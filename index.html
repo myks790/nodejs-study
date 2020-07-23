@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>home</title>
+
+    <link rel="stylesheet" type="text/css" href="/public/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/javascript.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <nav class="sideBar">
+            <ul id=dirUl>
+                <li data-id="1"><a href="">-</a></li>
+            </ul>
+        </nav>
+        <main class="viewContainer">
+            <pre><code id="content">...</code></pre>
+        </main>
+        <footer class="footer">
+            <div>
+                <p>Copyright 2020. <a target='_blank' href="https://github.com/myks790">myks790</a></p>
+                <p>이 페이지의 소스코드는 <a target='_blank' href="https://github.com/myks790/nodejs-study">이 곳</a>에서 볼 수 있습니다.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function get(url, callback) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    callback(xhr.responseText)
+                }
+            };
+
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+        window.addEventListener('load', function () {
+            get('/api/dirList', function (data) {
+                let list = [];
+                JSON.parse(data).forEach(e => {
+                    list.push(`<li><a href="#${e}">${e}</a></li>`);
+                });
+                document.getElementById('dirUl').innerHTML = list.join('');
+            });
+        })
+        window.addEventListener('hashchange', function () {
+            var anchor = document.location.hash.slice(1);
+            get('/api/content?id=' + anchor, function (data) {
+                data = data.replace(/\/\/\s(.*)/g, '/* $1 */')
+                document.getElementById('content').textContent = data;
+                const code = document.getElementById('content');
+                hljs.highlightBlock(code);
+            });
+        })
+    </script>
+</body>
+</html>

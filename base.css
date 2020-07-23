@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: fit-content(100%);
+}
+
+.sideBar {
+    grid-column: 1/2;
+    background: rgba(248, 249, 250, 0.84);
+    border-right: solid 1px rgba(50, 50, 50, 0.18);
+}
+
+.viewContainer {
+    grid-column: 2/3;
+    margin-left: 15px;
+    background: rgba(255, 255, 255, 0.84);
+}
+
+.footer {
+    grid-column: 1/3;
+    display: flex;
+    justify-content: center;
+    color: #343a40;
+    font-size: 9px;
+    text-align: center;
+    margin-top: 10px;
+}
